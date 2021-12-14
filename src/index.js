@@ -3,12 +3,17 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-
+import PeopleContextProvider from './components/context/PeopleContextProvider';
+import ModalContextProvider from './components/context/ModalContextProvider';
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+	<React.StrictMode>
+		<PeopleContextProvider>
+			<ModalContextProvider>
+				<App />
+			</ModalContextProvider>
+		</PeopleContextProvider>
+	</React.StrictMode>,
+	document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function

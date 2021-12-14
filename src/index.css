@@ -6,3 +6,29 @@
 body {
 	height: 100vh;
 }
+
+.modal-bg {
+	background-color: rgba(200, 200, 200, 0.5);
+}
+
+.modalContainer {
+	/* width: 500px; */
+	/* height: 200px; */
+	/* height: fit-content; */
+	border-radius: 12px;
+	/* background-color:white; */
+	box-shadow: rgba(177, 123, 123, 0.35) 0px 5px 15px;
+	/* display: flex;
+  flex-direction: column; */
+	/* padding: 25px; */
+}
+
+.modalCard {
+	backdrop-filter: blur(5px);
+}
+
+@layer components {
+	.glass {
+		@apply bg-gradient-to-br from-gray-400 to-transparent  bg-opacity-20 shadow-md;
+	}
+}

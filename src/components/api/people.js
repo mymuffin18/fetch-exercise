@@ -4,18 +4,22 @@ const API_URL = 'https://swapi.dev/api';
 export const getData = async (persons = 30) => {
 	let p = [];
 	let NUMBER_OF_FETCH = persons / 10;
-
-	for (let i = 1; i <= NUMBER_OF_FETCH; i++) {
-		if (i === 1) {
-			const res = await axios.get(`${API_URL}/people`);
-			res.data.results.map((result) => p.push(result));
-		} else {
-			const res = await axios.get(`${API_URL}/people/?page=${i}`);
-			res.data.results.map((result) => p.push(result));
+	let error = 0;
+	try {
+		for (let i = 1; i <= NUMBER_OF_FETCH; i++) {
+			if (i === 1) {
+				const res = await axios.get(`${API_URL}/people`);
+				res.data.results.map((result) => p.push(result));
+			} else {
+				const res = await axios.get(`${API_URL}/people/?page=${i}`);
+				res.data.results.map((result) => p.push(result));
+			}
 		}
+	} catch (e) {
+		error = 1;
 	}
 
-	return p;
+	return [p, error];
 };
 
 export const fetchPerson = async (count) => {
