@@ -25,7 +25,7 @@ function Header({
 	const addPerson = (e) => {
 		e.preventDefault();
 		if (status === 'add') {
-			setCount((count) => (count += 1));
+			// setCount((count) => (count += 1));
 			setPeople([...people, { name: name }]);
 		} else if (status === 'edit') {
 			setPeople(
