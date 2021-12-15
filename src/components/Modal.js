@@ -53,6 +53,7 @@ function Modal(props) {
 
 	const handleClose = () => {
 		setName({ first_name: '', last_name: '' });
+		dispatchStatus({ type: 'ADD' });
 		dispatch({ type: 'CLOSE_MODAL' });
 	};
 	return ReactDOM.createPortal(

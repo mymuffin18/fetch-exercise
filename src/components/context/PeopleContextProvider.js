@@ -38,6 +38,12 @@ const reducer = (state, action) => {
 						: user;
 				}),
 			};
+
+		case 'INCREMENT_COUNT':
+			return {
+				...state,
+				count: state.count + 1,
+			};
 		case 'FETCH_FAIL':
 			return {
 				...state,
