@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'https://swapi.dev/api';
+const API_URL = 'https://swapi.py4e.com/api';
 export const getData = async (persons = 30) => {
 	let p = [];
 	let NUMBER_OF_FETCH = persons / 10;

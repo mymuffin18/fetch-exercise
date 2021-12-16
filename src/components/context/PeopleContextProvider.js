@@ -5,6 +5,7 @@ const initialState = {
 	count: 31,
 	loading: false,
 	errorMsg: '',
+	miniLoader: false,
 };
 
 const reducer = (state, action) => {
@@ -38,11 +39,27 @@ const reducer = (state, action) => {
 						: user;
 				}),
 			};
-
+		case 'DELETE_PERSON':
+			return {
+				...state,
+				people: state.people.filter(
+					(user) => user.name !== action.payload
+				),
+			};
 		case 'INCREMENT_COUNT':
 			return {
 				...state,
 				count: state.count + 1,
+			};
+		case 'MINI_LOADING':
+			return {
+				...state,
+				miniLoader: true,
+			};
+		case 'MINI_STOP':
+			return {
+				...state,
+				miniLoader: false,
 			};
 		case 'FETCH_FAIL':
 			return {

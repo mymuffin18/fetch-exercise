@@ -4,7 +4,7 @@ import { StatusContext } from './context/StatusContextProvider';
 
 function List({ filter }) {
 	const [filteredNames, setFilteredNames] = useState([]);
-	const { state } = useContext(PeopleContext);
+	const { state, dispatch: peopleDispatch } = useContext(PeopleContext);
 	const { dispatch } = useContext(StatusContext);
 	useEffect(() => {
 		if (filter === '') {
@@ -17,10 +17,10 @@ function List({ filter }) {
 			);
 		}
 	}, [state.people, filter]);
-	// const handleDelete = (e, name) => {
-	// 	e.preventDefault();
-	// 	setPeople(people.filter((person) => person.name !== name));
-	// };
+	const handleDelete = (e, name) => {
+		e.preventDefault();
+		peopleDispatch({ type: 'DELETE_PERSON', payload: name });
+	};
 	const onSelect = (e, name) => {
 		e.preventDefault();
 		dispatch({ type: 'EDIT', payload: name });
@@ -29,7 +29,10 @@ function List({ filter }) {
 		<div>
 			<ol className='flex flex-col items-center gap-2'>
 				{state.loading ? (
-					<p>Loading....</p>
+					<img
+						src='https://tenor.com/view/hug-gif-22743155'
+						alt=''
+					/>
 				) : (
 					filteredNames.map((person) => (
 						<li className='flex gap-4 justify-between list-decimal'>
@@ -44,7 +47,7 @@ function List({ filter }) {
 								<button
 									className='px-4 py-2 bg-red-500 text-white rounded-xl'
 									onClick={(e) => {
-										// handleDelete(e, person.name);
+										handleDelete(e, person.name);
 									}}
 								>
 									Delete
@@ -58,6 +61,9 @@ function List({ filter }) {
 				<h1 className='text-center text-lg text-red-500'>
 					{state.errorMsg}
 				</h1>
+			)}
+			{state.miniLoader && (
+				<img src='https://tenor.com/view/hug-gif-22743155' alt='' />
 			)}
 		</div>
 	);
